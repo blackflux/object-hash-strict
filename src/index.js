@@ -17,8 +17,9 @@ const validateObject = (obj) => {
 
 const wrap = (fn) => (object, ...args) => fn(validateObject(object), ...args);
 
-module.exports = Object.entries(objectHash).reduce((p, [k, v]) => {
-  // eslint-disable-next-line no-param-reassign
-  p[k] = wrap(v);
-  return p;
-}, wrap(objectHash));
+module.exports = Object
+  .entries(objectHash)
+  .reduce(
+    (p, [k, v]) => Object.assign(p, { [k]: wrap(v) }),
+    wrap(objectHash)
+  );
