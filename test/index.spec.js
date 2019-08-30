@@ -5,12 +5,9 @@ const objectHash = require('object-hash');
 const objectHashStrict = require('../src/index');
 
 describe('Testing object-hash-strict', () => {
-  describe('Testing throws on undefined', () => {
-    try {
-      objectHashStrict({ key: undefined });
-    } catch (e) {
-      expect(e.message).to.equal('Bad value "undefined" for key "key" detected');
-    }
+  it('Testing throws on undefined', async ({ capture }) => {
+    const e = await capture(() => objectHashStrict({ key: undefined }));
+    expect(e.message).to.equal('Bad value "undefined" for key "key" detected');
   });
 
   describe('Comparing Behaviour to object-hash', () => {
