@@ -10,6 +10,11 @@ describe('Testing object-hash-strict', () => {
     expect(e.message).to.equal('Bad value "undefined" for key "key" detected');
   });
 
+  it('Testing does not throw on allowed undefined', async () => {
+    const r = objectHashStrict({ key: undefined }, { allowedUndefined: ['key'] });
+    expect(r).to.equal('2eb60a588763163091ce17e56a50c8f2769c3955');
+  });
+
   describe('Comparing Behaviour to object-hash', () => {
     const toHash = { id: 0, name: 'Haley Rivera' };
 
