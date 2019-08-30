@@ -21,6 +21,17 @@ Install with [npm](https://www.npmjs.com/):
 
 Use exactly as [object-hash](https://www.npmjs.com/package/object-hash).
 
+## Additional Options
+
+The following options can be provided on top of the existing `object-hash` options.
+
+### allowedUndefined
+
+Type: `Array`<br>
+Default: `[]`
+
+Provide list of keys that are allowed to be undefined.
+
 ## How it's different from object-hash
 
 - Will throw error if a "real" key has an unknown value
