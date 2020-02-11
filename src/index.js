@@ -4,6 +4,7 @@ const objectScan = require('object-scan');
 
 const INVALID = [undefined];
 const scanner = (obj, { allowedUndefined }) => objectScan(['**'], {
+  joined: true,
   filterFn: (key, value) => {
     if (INVALID.includes(value) && !allowedUndefined.includes(key)) {
       throw new Error(`Bad value "${value}" for key "${key}" detected`);
