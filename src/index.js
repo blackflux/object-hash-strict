@@ -3,14 +3,14 @@ const objectHash = require('object-hash');
 const objectScan = require('object-scan');
 
 const INVALID = [undefined];
-const scanner = (obj, { allowedUndefined }) => objectScan(['**'], {
+const scanner = objectScan(['**'], {
   joined: true,
-  filterFn: (key, value) => {
-    if (INVALID.includes(value) && !allowedUndefined.includes(key)) {
+  filterFn: (key, value, { context }) => {
+    if (INVALID.includes(value) && !context.allowedUndefined.includes(key)) {
       throw new Error(`Bad value "${value}" for key "${key}" detected`);
     }
   }
-})(obj);
+});
 
 const validateObject = (obj, { allowedUndefined = [] } = {}) => {
   assert(Array.isArray(allowedUndefined), 'Invalid Option Provided');
