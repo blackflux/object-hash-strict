@@ -5,12 +5,12 @@ const objectScan = require('object-scan');
 const INVALID = [undefined];
 const scanner = objectScan(['**'], {
   joined: true,
-  filterFn: (ctx) => {
-    const key = ctx.key();
-    const value = ctx.value();
-    const context = ctx.context;
-    if (INVALID.includes(value) && !context.allowedUndefined.includes(key)) {
-      throw new Error(`Bad value "${value}" for key "${key}" detected`);
+  filterFn: ({ getKey, value, context }) => {
+    if (INVALID.includes(value)) {
+      const key = getKey();
+      if (!context.allowedUndefined.includes(key)) {
+        throw new Error(`Bad value "${value}" for key "${key}" detected`);
+      }
     }
   }
 });
