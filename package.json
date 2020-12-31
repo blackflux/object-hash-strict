@@ -102,6 +102,6 @@
   ],
   "dependencies": {
     "object-hash": "2.1.1",
-    "object-scan": "13.6.10"
+    "object-scan": "13.6.11"
   }
 }
