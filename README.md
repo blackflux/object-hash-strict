@@ -25,12 +25,12 @@ Use exactly as [object-hash](https://www.npmjs.com/package/object-hash).
 
 The following options can be provided on top of the existing `object-hash` options.
 
-### allowedUndefined
+### allowUndefined
 
-Type: `Array`<br>
+Type: `Array | Boolean`<br>
 Default: `[]`
 
-Provide list of keys that are allowed to be undefined.
+Provide list of keys that are allowed to be undefined. Or boolean to allow any undefined.
 
 ## How it's different from object-hash
 

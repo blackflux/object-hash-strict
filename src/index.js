@@ -2,22 +2,28 @@ const assert = require('assert');
 const objectHash = require('object-hash');
 const objectScan = require('object-scan');
 
-const INVALID = [undefined];
 const scanner = objectScan(['**'], {
   joined: true,
   filterFn: ({ getKey, value, context }) => {
-    if (INVALID.includes(value)) {
+    if (value === undefined) {
       const key = getKey();
-      if (!context.allowedUndefined.includes(key)) {
+      if (!context.allowUndefined.includes(key)) {
         throw new Error(`Bad value "${value}" for key "${key}" detected`);
       }
     }
   }
 });
 
-const validateObject = (obj, { allowedUndefined = [] } = {}) => {
-  assert(Array.isArray(allowedUndefined), 'Invalid Option Provided');
-  scanner(obj, { allowedUndefined });
+const validateObject = (obj, opts_ = {}) => {
+  const opts = {
+    allowUndefined: [],
+    ...opts_
+  };
+  const isArray = Array.isArray(opts.allowUndefined);
+  assert(isArray || typeof opts.allowUndefined === 'boolean', 'Invalid Option Provided');
+  if (opts.allowUndefined !== true) {
+    scanner(obj, { allowUndefined: isArray ? opts.allowUndefined : [] });
+  }
   return obj;
 };
 
