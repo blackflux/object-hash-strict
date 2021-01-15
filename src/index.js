@@ -15,6 +15,7 @@ const scanner = objectScan(['**'], {
 });
 
 const validateObject = (obj, opts_ = {}) => {
+  assert(!('allowedUndefined' in opts_), 'Bad option "allowedUndefined" provided.');
   const opts = {
     allowUndefined: [],
     ...opts_
