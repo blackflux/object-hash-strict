@@ -5,13 +5,23 @@ const objectHash = require('object-hash');
 const objectHashStrict = require('../src/index');
 
 describe('Testing object-hash-strict', () => {
-  it('Testing throws on undefined', async ({ capture }) => {
+  it('Testing throws on undefined (array)', async ({ capture }) => {
     const e = await capture(() => objectHashStrict({ key: undefined }));
     expect(e.message).to.equal('Bad value "undefined" for key "key" detected');
   });
 
-  it('Testing does not throw on allowed undefined', async () => {
-    const r = objectHashStrict({ key: undefined }, { allowedUndefined: ['key'] });
+  it('Testing throws on undefined (false)', async ({ capture }) => {
+    const e = await capture(() => objectHashStrict({ key: undefined }, { allowUndefined: false }));
+    expect(e.message).to.equal('Bad value "undefined" for key "key" detected');
+  });
+
+  it('Testing does not throw on allowed undefined (array)', async () => {
+    const r = objectHashStrict({ key: undefined }, { allowUndefined: ['key'] });
+    expect(r).to.equal('2eb60a588763163091ce17e56a50c8f2769c3955');
+  });
+
+  it('Testing does not throw on allowed undefined (true)', async () => {
+    const r = objectHashStrict({ key: undefined }, { allowUndefined: true });
     expect(r).to.equal('2eb60a588763163091ce17e56a50c8f2769c3955');
   });
 
