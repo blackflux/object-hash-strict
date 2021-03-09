@@ -8,7 +8,7 @@
       "packageName": "object-hash-strict",
       "projectName": "object-hash-strict",
       "owner": "simlu",
-      "nodeVersion": "12",
+      "nodeVersion": "10",
       "ownerName": "Lukas Siemon",
       "mergeBot": "MrsFlux"
     }
