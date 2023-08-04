@@ -1,6 +1,6 @@
-const assert = require('assert');
-const objectHash = require('object-hash');
-const objectScan = require('object-scan');
+import assert from 'assert';
+import objectHash from 'object-hash';
+import objectScan from 'object-scan';
 
 const scanner = objectScan(['**'], {
   joined: true,
@@ -30,7 +30,7 @@ const validateObject = (obj, opts_ = {}) => {
 
 const wrap = (fn) => (object, ...args) => fn(validateObject(object, args[0]), ...args);
 
-module.exports = Object
+export default Object
   .entries(objectHash)
   .reduce(
     (p, [k, v]) => Object.assign(p, { [k]: wrap(v) }),
