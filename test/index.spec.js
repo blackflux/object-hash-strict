@@ -1,8 +1,8 @@
-const stream = require('stream');
-const expect = require('chai').expect;
-const { describe } = require('node-tdd');
-const objectHash = require('object-hash');
-const objectHashStrict = require('../src/index');
+import stream from 'stream';
+import { expect } from 'chai';
+import { describe } from 'node-tdd';
+import objectHash from 'object-hash';
+import objectHashStrict from '../src/index.js';
 
 describe('Testing object-hash-strict', () => {
   it('Testing throws on undefined (array)', async ({ capture }) => {
